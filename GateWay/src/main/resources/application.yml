@@ -1,0 +1,37 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        #service1
+        - id: Users
+          uri: lb://Users
+          predicates:
+            - Path=/api/v1/users/**
+        #service2
+        - id: Order
+          uri: lb://Order
+          predicates:
+            - Path=/api/v1/orders/**
+        #service3
+        - id: Basket
+          uri: lb://Basket
+          predicates:
+            - Path=/api/v1/basket/**
+        #service4
+        - id: Product
+          uri: lb://Product
+          predicates:
+            - Path=/api/v1/products/**
+        #service5
+        - id: Discount
+          uri: lb://Discount
+          predicates:
+            - Path=/api/v1/discount/**
+
+server:
+  port: 3030
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
